@@ -1,24 +1,22 @@
 
-(defun php-chr (ascii)
-	(string ascii))
+(defun php-chr (ascii) 
+  (string ascii))
 
-(defun php-chunk-split (body &optional chunklen end)
-	(unless chunklen
-		(setq chunklen 76))
-
-	(unless end
-		(setq end "\n"))
-
-	(with-temp-buffer 
-		(insert body) 
-		(goto-char 1) 
-		(let ((chunks (/ (length body) chunklen))
-			  (c 0))
-		(while (< c chunks)
-			(forward-char chunklen)
-			(insert end)
-			(incf c))
-		(buffer-string))))
+(defun php-chunk-split (body &optional chunklen end) 
+  (unless chunklen 
+	(setq chunklen 76))
+  (unless end 
+	(setq end "\n"))
+  (with-temp-buffer 
+	(insert body) 
+	(goto-char 1) 
+	(let ((chunks (/ (length body) chunklen)) 
+		  (c 0)) 
+	  (while (< c chunks) 
+		(forward-char chunklen) 
+		(insert end) 
+		(incf c)) 
+	  (buffer-string))))
 
 (defun php-explode (delimiter string) 
   (split-string string delimiter))
