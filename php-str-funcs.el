@@ -4,9 +4,9 @@
 
 (defun php-chunk-split (body &optional chunklen end) 
   (unless chunklen 
-	(setq chunklen 76))
+	(setq chunklen 76)) 
   (unless end 
-	(setq end "\n"))
+	(setq end "\n")) 
   (with-temp-buffer 
 	(insert body) 
 	(goto-char 1) 
@@ -34,7 +34,7 @@
 	  (string-match re_pattern subject) 
 	  (when (match-string x subject) 
 		(push (match-string x subject) matches)) 
-	  (setq x (1+ x))) 
+	  (incf x)) 
 	(reverse matches)))
 
 (defun php-sprintf (strformat &rest args) 
@@ -62,7 +62,7 @@
 							(nth pcount replace))) 
 		  (goto-char 1) 
 		  (setq subject (buffer-string)) 
-		  (setq pcount (1+ pcount))))))
+		  (incf pcount)))))
   subject)
 
 (defun php-str-repeat (input times) 
@@ -70,7 +70,7 @@
 		(str "")) 
 	(while (> times pcount) 
 	  (setq str (concat str input)) 
-	  (setq pcount (1+ pcount)))
+	  (incf pcount))
 	str))
 
 (defun php-stripos (haystack needle) 
