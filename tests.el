@@ -1,5 +1,7 @@
 ;; http://nschum.de/src/emacs/elk-test/
 
+;; TODO: fix formatting. make settings on elisp-format for deftest
+
 (deftest "php-chr" (assert-equal "A" (php-chr 65)))
 
 (deftest "php-chunk-split" (assert-equal "333\n333\n333\n" (php-chunk-split "333333333" 3)))
