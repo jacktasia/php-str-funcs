@@ -1,3 +1,6 @@
+;; TODO: docstrings
+;; TODO: a detailed note about PHP vs Emacs Lisp variable types
+;; ...
 
 (defun php-chr (ascii) 
   (string ascii))
@@ -18,6 +21,33 @@
 		(incf c)) 
 	  (buffer-string))))
 
+(defun php-count-chars (str &optional mode)
+	"modes 0-2 return a hash-table; models 3-4 return a string"
+ 	;; TODO: support modes 2,3,4 - and cleanup
+	(unless mode
+		(setq mode 0))
+	
+	(let ((c 0)
+		  (ret (make-hash-table))
+          (bvs-used (string-to-list str)))
+
+		(dolist (bv bvs-used)
+			(if (gethash bv ret)
+				(puthash bv (1+ (gethash bv ret)) ret)
+				(puthash bv 1 ret)))
+
+		(cond ((= mode 1) ret)
+			  ((= mode 0)
+				(while (> 256 c)
+					(unless (gethash c ret)
+						(puthash c 0 ret))
+					(incf c))
+				ret)	
+		)
+	))
+
+;;(php-count-chars "aasdf")
+
 (defun php-explode (delimiter string) 
   (split-string string delimiter))
 
@@ -27,6 +57,7 @@
 (defun php-join (glue &rest pieces) 
   (apply 'php-implode glue pieces))
 
+;; TODO: This is too simpified; use a macro to get same functionality as PHP
 (defun php-preg-match-all (re_pattern subject) 
   (let ((matches '()) 
 		(x 1)) 
@@ -80,3 +111,4 @@
   (let ((case-fold-search nil)) 
 	(string-match-p needle haystack)))
 
+(provide 'php-str-funcs)
