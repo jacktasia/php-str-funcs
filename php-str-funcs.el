@@ -21,31 +21,32 @@
 		(incf c)) 
 	  (buffer-string))))
 
-(defun php-count-chars (str &optional mode)
-	"modes 0-2 return a hash-table; models 3-4 return a string"
- 	;; TODO: support modes 2,3,4 - and cleanup
-	(unless mode
-		(setq mode 0))
-	
-	(let ((c 0)
-		  (ret (make-hash-table))
-          (bvs-used (string-to-list str)))
-
-		(dolist (bv bvs-used)
-			(if (gethash bv ret)
-				(puthash bv (1+ (gethash bv ret)) ret)
-				(puthash bv 1 ret)))
-
-		(cond ((= mode 1) ret)
-			  ((= mode 0)
-				(while (> 256 c)
-					(unless (gethash c ret)
-						(puthash c 0 ret))
-					(incf c))
-				ret)	
-		)
-	))
-
+(defun php-count-chars (str &optional mode) 
+  "modes 0-2 return a hash-table; models 3-4 return a string"
+  ;; TODO: add support for modes 3,4 w/ tests then needs a big cleanup
+  (unless mode 
+	(setq mode 0)) 
+  (let ((c 0) 
+		(ret (make-hash-table)) 
+		(ret2 (make-hash-table)) 
+		(bvs-used (string-to-list str))) 
+	(dolist (bv bvs-used) 
+	  (if (gethash bv ret) 
+		  (puthash bv (1+ (gethash bv ret)) ret) 
+		(puthash bv 1 ret))) 
+	(cond ((= mode 1) ret) 
+		  ((= mode 2) 
+		   (while (> 256 c) 
+			 (unless (gethash c ret) 
+			   (puthash c 0 ret2)) 
+			 (incf c))
+		   ret2) 
+		  ((= mode 0) 
+		   (while (> 256 c) 
+			 (unless (gethash c ret) 
+			   (puthash c 0 ret)) 
+			 (incf c))
+		   ret))))
 ;;(php-count-chars "aasdf")
 
 (defun php-explode (delimiter string) 
