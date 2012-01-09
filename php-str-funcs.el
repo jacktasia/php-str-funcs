@@ -27,27 +27,41 @@
   (unless mode 
 	(setq mode 0)) 
   (let ((c 0) 
-		(ret (make-hash-table)) 
-		(ret2 (make-hash-table)) 
-		(bvs-used (string-to-list str))) 
-	(dolist (bv bvs-used) 
+		(ret (make-hash-table))) 
+	(dolist (bv (string-to-list str)) 
 	  (if (gethash bv ret) 
 		  (puthash bv (1+ (gethash bv ret)) ret) 
 		(puthash bv 1 ret))) 
-	(cond ((= mode 1) ret) 
+	(cond ((= mode 0) 
+		   (php-count-chars-mode0 ret)) 
+		  ((= mode 1) ret) 
 		  ((= mode 2) 
-		   (while (> 256 c) 
-			 (unless (gethash c ret) 
-			   (puthash c 0 ret2)) 
-			 (incf c))
-		   ret2) 
-		  ((= mode 0) 
-		   (while (> 256 c) 
-			 (unless (gethash c ret) 
-			   (puthash c 0 ret)) 
-			 (incf c))
-		   ret))))
+		   (php-count-chars-mode2 ret)))))
 ;;(php-count-chars "aasdf")
+
+(defun php-count-chars-mode0 (counts-data) 
+  "This is not a php function too. php-count-chars code is split
+	up since it's actually 4 functions" 
+  (let ((c 0) 
+		(counts counts-data)) 
+	(while (> 256 c) 
+	  (unless (gethash c counts) 
+		(puthash c 0 counts)) 
+	  (incf c))
+	counts))
+
+(defun php-count-chars-mode2 (count-data) 
+  "This is not a php function too. php-count-chars code is split
+	up since it's actually 4 functions" 
+  (let ((c 0) 
+		(counts (make-hash-table))) 
+	(while (> 256 c) 
+	  (unless (gethash c count-data) 
+		(puthash c 0 counts)) 
+	  (incf c))
+	counts))
+
+;;(defun php
 
 (defun php-explode (delimiter string) 
   (split-string string delimiter))
