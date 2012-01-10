@@ -36,12 +36,15 @@
 		   (php-count-chars-mode0 ret)) 
 		  ((= mode 1) ret) 
 		  ((= mode 2) 
-		   (php-count-chars-mode2 ret)))))
-;;(php-count-chars "aasdf")
+		   (php-count-chars-mode2 ret)) 
+		  ((= mode 3) 
+		   (php-count-chars-mode3 str)) 
+		  ((= mode 4) 
+		   (php-count-chars-mode4 str)))))
 
 (defun php-count-chars-mode0 (counts-data) 
   "This is not a php function too. php-count-chars code is split
-	up since it's actually 4 functions" 
+	up by mode since it's actually 5 functions" 
   (let ((c 0) 
 		(counts counts-data)) 
 	(while (> 256 c) 
@@ -52,7 +55,7 @@
 
 (defun php-count-chars-mode2 (count-data) 
   "This is not a php function too. php-count-chars code is split
-	up since it's actually 4 functions" 
+	up by mode since it's actually 5 functions" 
   (let ((c 0) 
 		(counts (make-hash-table))) 
 	(while (> 256 c) 
@@ -61,7 +64,33 @@
 	  (incf c))
 	counts))
 
-;;(defun php
+(defun php-count-chars-mode3 (str) 
+  "This is not a php function too. php-count-chars code is split
+	up by mode since it's actually 5 functions" 
+  (let ((strs '())) 
+	(mapc 
+	 (lambda (l) 
+	   (unless (member l strs) 
+		 (setq strs (cons l strs)))) 
+	 (string-to-list str)) 
+	(apply 'string (reverse strs))))
+
+(defun php-count-chars-mode4 (str) 
+  "This is not a php function too. php-count-chars code is split
+	up by mode since it's actually 5 functions" 
+  (let ((used-strs '()) 
+		(c 0) 
+		(strs '())) 
+	(mapc 
+	 (lambda (l) 
+	   (unless (member l used-strs) 
+		 (setq used-strs (cons l used-strs)))) 
+	 (string-to-list str)) 
+	(while (> 256 c) 
+	  (unless (member c used-strs) 
+		(setq strs (cons c strs))) 
+	  (incf c)) 
+	(apply 'string (reverse strs))))
 
 (defun php-explode (delimiter string) 
   (split-string string delimiter))
