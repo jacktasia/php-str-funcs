@@ -2,6 +2,9 @@
 ;; TODO: a detailed note about PHP vs Emacs Lisp variable types
 ;; ...
 
+(defun php-chop (str &optional charlist)
+	(php-rtrim str charlist))
+
 (defun php-chr (ascii) 
   (string ascii))
 
@@ -111,6 +114,16 @@
 		(push (match-string x subject) matches)) 
 	  (incf x)) 
 	(reverse matches)))
+
+(defun php-rtrim (str &optional charlist) 
+  (unless charlist 
+	(setq charlist " \t\n\r\x0000\x000B")) 
+  (with-temp-buffer 
+	(insert str)
+	(goto-char 1) 
+	(while (re-search-forward (format "\\([%s]+\\)$" charlist) nil t) 
+	  (replace-match "" nil nil)) 
+	(buffer-string)))
 
 (defun php-sprintf (strformat &rest args) 
   (apply 'format strformat args))

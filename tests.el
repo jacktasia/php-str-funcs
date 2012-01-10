@@ -3,6 +3,11 @@
 ;; TODO: fix formatting. make settings on elisp-format for deftest
 ;; TODO: handle these huge blocks of test data better...
 
+
+(deftest "php-chop, no charlist" (assert-equal "ABCDEFG" (php-chop "ABCDEFG  \n\t")))
+
+(deftest "php-chop, charlist limit" (assert-equal "ABCDEFG\t\t" (php-chop "ABCDEFG\t\t  " " ")))
+
 (deftest "php-chr" (assert-equal "A" (php-chr 65)))
 
 (deftest "php-chunk-split" (assert-equal "333\n333\n333\n" (php-chunk-split "333333333" 3)))
@@ -543,8 +548,10 @@
 (deftest "php-count-chars, mode 3" (assert-equal "ABCD" (php-count-chars "AAABBCDDDD" 3)))
 
 
-(deftest "php-count-chars, mode 4" (assert-equal "2cf00ec28586a1ae510cce9dd5d2fc34"
-												 (md5 (php-count-chars "ABCDEFG" 4))))
+(deftest "php-count-chars, mode 4" (assert-equal "2cf00ec28586a1ae510cce9dd5d2fc34" (md5
+																					 (php-count-chars
+																					  "ABCDEFG"
+																					  4))))
 
 (deftest "php-explode" (assert-equal '("1" "2" "3" "4") 
 									 (php-explode "," "1,2,3,4")))
@@ -556,6 +563,10 @@
 (deftest "php-preg-match-all" (assert-equal '("aaa" "123") 
 											(php-preg-match-all "\\([a-z]+\\)\\([0-9]+\\)"
 																"aaa123")))
+
+(deftest "php-rtrim, no charlist" (assert-equal "ABCDEFG" (php-rtrim "ABCDEFG  \n\t")))
+
+(deftest "php-rtrim, charlist limit" (assert-equal "ABCDEFG\t\t" (php-rtrim "ABCDEFG\t\t  " " ")))
 
 (deftest "php-sprintf" (assert-equal "one two 3" (php-sprintf "%s %s %i" "one" "two" 3)))
 
