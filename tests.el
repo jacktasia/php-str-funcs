@@ -560,6 +560,10 @@
 
 (deftest "php-join" (assert-equal "1,2,3,4" (php-join "," '("1" "2" "3" "4"))))
 
+(deftest "php-lcfirst, test 1" (assert-equal "helloWorld"(php-lcfirst "HelloWorld")))
+
+(deftest "php-lcfirst, test 2" (assert-equal "hELLOWORLD"(php-lcfirst "HELLOWORLD")))
+
 (deftest "php-ltrim, no charlist" (assert-equal "ABCDEFG" (php-ltrim "\n\t   ABCDEFG")))
 
 (deftest "php-ltrim, charlist limit" (assert-equal "\t\tABCDEFG" (php-ltrim "    \t\tABCDEFG" " ")))

@@ -104,6 +104,14 @@
 (defun php-join (glue &rest pieces) 
   (apply 'php-implode glue pieces))
 
+(defun php-lcfirst (str) 
+  (with-temp-buffer 
+	(insert str) 
+	(goto-char 1) 
+	(while (re-search-forward "^\\([A-Z]\\)" nil t) 
+	  (replace-match (downcase (match-string 1)) t nil)) 
+	(buffer-string)))
+
 (defun php-ltrim (str &optional charlist) 
   (unless charlist 
 	(setq charlist " \t\n\r\x0000\x000B")) 
