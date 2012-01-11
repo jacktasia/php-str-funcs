@@ -104,6 +104,18 @@
 (defun php-join (glue &rest pieces) 
   (apply 'php-implode glue pieces))
 
+(defun php-ltrim (str &optional charlist) 
+  (unless charlist 
+	(setq charlist " \t\n\r\x0000\x000B")) 
+  (with-temp-buffer 
+	(insert str)
+	(goto-char 1) 
+	(while (re-search-forward (format "^\\([%s]+\\)" charlist) nil t) 
+	  (replace-match "" nil nil)) 
+	(buffer-string)))
+
+(php-ltrim "     asdf")
+
 ;; TODO: This is too simpified; use a macro to get same functionality as PHP
 (defun php-preg-match-all (re_pattern subject) 
   (let ((matches '()) 
@@ -167,5 +179,10 @@
 (defun php-strpos (haystack needle) 
   (let ((case-fold-search nil)) 
 	(string-match-p needle haystack)))
+
+(defun php-trim (str &optional charlist) 
+	(php-rtrim (php-ltrim str charlist) charlist))
+
+;;(php-trim "   asdf  \n ")
 
 (provide 'php-str-funcs)
