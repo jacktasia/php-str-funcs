@@ -2,8 +2,8 @@
 ;; TODO: a detailed note about PHP vs Emacs Lisp variable types
 ;; ...
 
-(defun php-chop (str &optional charlist)
-	(php-rtrim str charlist))
+(defun php-chop (str &optional charlist) 
+  (php-rtrim str charlist))
 
 (defun php-chr (ascii) 
   (string ascii))
@@ -108,13 +108,11 @@
   (unless charlist 
 	(setq charlist " \t\n\r\x0000\x000B")) 
   (with-temp-buffer 
-	(insert str)
+	(insert str) 
 	(goto-char 1) 
 	(while (re-search-forward (format "^\\([%s]+\\)" charlist) nil t) 
 	  (replace-match "" nil nil)) 
 	(buffer-string)))
-
-(php-ltrim "     asdf")
 
 ;; TODO: This is too simpified; use a macro to get same functionality as PHP
 (defun php-preg-match-all (re_pattern subject) 
@@ -131,7 +129,7 @@
   (unless charlist 
 	(setq charlist " \t\n\r\x0000\x000B")) 
   (with-temp-buffer 
-	(insert str)
+	(insert str) 
 	(goto-char 1) 
 	(while (re-search-forward (format "\\([%s]+\\)$" charlist) nil t) 
 	  (replace-match "" nil nil)) 
@@ -181,8 +179,6 @@
 	(string-match-p needle haystack)))
 
 (defun php-trim (str &optional charlist) 
-	(php-rtrim (php-ltrim str charlist) charlist))
-
-;;(php-trim "   asdf  \n ")
+  (php-rtrim (php-ltrim str charlist) charlist))
 
 (provide 'php-str-funcs)
