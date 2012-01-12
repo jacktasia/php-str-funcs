@@ -122,6 +122,9 @@
 	  (replace-match "" nil nil)) 
 	(buffer-string)))
 
+(defun php-ord (str) 
+  (car (string-to-list str)))
+
 ;; TODO: This is too simpified; use a macro to get same functionality as PHP
 (defun php-preg-match-all (re_pattern subject) 
   (let ((matches '()) 
@@ -181,6 +184,9 @@
 
 (defun php-stripos (haystack needle) 
   (string-match-p needle haystack))
+
+(defun php-strlen (str) 
+  (length str))
 
 (defun php-strpos (haystack needle) 
   (let ((case-fold-search nil)) 

@@ -568,6 +568,8 @@
 
 (deftest "php-ltrim, charlist limit" (assert-equal "\t\tABCDEFG" (php-ltrim "    \t\tABCDEFG" " ")))
 
+(deftest "php-ord" (assert-equal 65 (php-ord "ABCDEFG")))
+
 (deftest "php-preg-match-all" (assert-equal '("aaa" "123") 
 											(php-preg-match-all "\\([a-z]+\\)\\([0-9]+\\)"
 																"aaa123")))
@@ -593,6 +595,8 @@
 (deftest "php-stripos nil" (assert-equal nil (php-stripos "abcdefgh" "z")))
 
 (deftest "php-stripos t" (assert-equal 2 (php-stripos "abcDefgh" "cde")))
+
+(deftest "php-strlen" (assert-equal 4 (php-strlen "ASDF")))
 
 (deftest "php-strpos nil" (assert-equal nil (php-strpos "abcdefgh" "cDe")))
 
