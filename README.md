@@ -4,6 +4,35 @@
 
 In the process of creating all the [php string functions](http://php.net/manual/en/ref.strings.php) in [Emacs Lisp](http://en.wikipedia.org/wiki/Emacs_Lisp) for fun. Also I think it may be an interesting way to learn Emacs Lisp for people who are more familiar with PHP (which I would think would be most).
 
+I plan on fully commenting the code after I finish my *first pass* of the functions.
+
 ## Tests
 
 tests.el uses [elk-test](http://nschum.de/src/emacs/elk-test/).
+
+## Functions Implemented (so far) *first pass*
+
+*There may be bugs. Let me know if you find any or know a better way of doing something.*
+
+* chop
+* chr
+* chunk_split
+* count_chars
+* explode
+* implode
+* join
+* lcfirst
+* ltrim
+* ord
+* rtrim
+* sprintf
+* str_split
+* str_replace
+* str_repeat
+* stripos
+* strlen
+* strpos
+* trim
+
+
+
