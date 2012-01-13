@@ -32,6 +32,8 @@ tests.el uses [elk-test](http://nschum.de/src/emacs/elk-test/).
 * stripos
 * strlen
 * strpos
+* strtolower
+* strtoupper
 * trim
 
 

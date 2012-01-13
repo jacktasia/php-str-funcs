@@ -602,6 +602,10 @@
 
 (deftest "php-strpos t" (assert-equal 2 (php-strpos "abcDefgh" "cDe")))
 
+(deftest "php-strtoupper" (assert-equal "ABC" (php-strtoupper "aBc")))
+
+(deftest "php-strtolower" (assert-equal "abc" (php-strtolower "aBc")))
+
 (deftest "php-trim, no charlist" (assert-equal "ABCDEFG" (php-trim "\n\t   ABCDEFG   ")))
 
 (deftest "php-trim, charlist limit" (assert-equal "\t\tABCDEFG" (php-trim "    \t\tABCDEFG " " ")))

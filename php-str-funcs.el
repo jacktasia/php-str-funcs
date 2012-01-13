@@ -192,6 +192,12 @@
   (let ((case-fold-search nil)) 
 	(string-match-p needle haystack)))
 
+(defun php-strtolower (str)
+	(downcase str))
+
+(defun php-strtoupper (str)
+	(upcase str))
+
 (defun php-trim (str &optional charlist) 
   (php-rtrim (php-ltrim str charlist) charlist))
 
