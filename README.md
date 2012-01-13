@@ -10,7 +10,10 @@ I plan on fully commenting the code after I finish my *first pass* of the functi
 
 tests.el uses [elk-test](http://nschum.de/src/emacs/elk-test/).
 
-## Functions Implemented (so far) *first pass*
+## Functions 
+
+### Completed (so far) *first pass*
+
 *There may be bugs. Let me know if you find any or know a better way of doing something.*
 
 * chop
@@ -35,9 +38,7 @@ tests.el uses [elk-test](http://nschum.de/src/emacs/elk-test/).
 * strtoupper
 * trim
 
-## Next Up
-
-*more of a todo than anything*
+### Next Up
 
 * ucfirst
 * ucwords
