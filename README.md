@@ -2,7 +2,7 @@
 
 ## About
 
-In the process of creating all the [php string functions](http://php.net/manual/en/ref.strings.php) in [Emacs Lisp](http://en.wikipedia.org/wiki/Emacs_Lisp) for fun. Also I think it may be an interesting way to learn Emacs Lisp for people who are more familiar with PHP (which I would think would be most).
+In the process of creating some of the [php string functions](http://php.net/manual/en/ref.strings.php) in [Emacs Lisp](http://en.wikipedia.org/wiki/Emacs_Lisp) for fun. Also I think it may be an interesting way to learn Emacs Lisp for people who are more familiar with PHP (which I would think would be most).
 
 I plan on fully commenting the code after I finish my *first pass* of the functions.
 
