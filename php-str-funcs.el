@@ -206,8 +206,6 @@
 	(insert str) 
 	(goto-char 1) 
 	(while (re-search-forward "^\\([A-Za-z]\\)" nil t)
-	  ;;(message "ucfirst: %s" (match-string 1))
-	  ;;(sit-for 1)
 	  (replace-match (upcase (match-string 1)) t nil)) 
 	(buffer-string)))
 
