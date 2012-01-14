@@ -192,13 +192,29 @@
   (let ((case-fold-search nil)) 
 	(string-match-p needle haystack)))
 
-(defun php-strtolower (str)
-	(downcase str))
+(defun php-strtolower (str) 
+  (downcase str))
 
-(defun php-strtoupper (str)
-	(upcase str))
+(defun php-strtoupper (str) 
+  (upcase str))
 
 (defun php-trim (str &optional charlist) 
   (php-rtrim (php-ltrim str charlist) charlist))
+
+(defun php-ucfirst (str) 
+  (with-temp-buffer 
+	(insert str) 
+	(goto-char 1) 
+	(while (re-search-forward "^\\([A-Za-z]\\)" nil t)
+	  ;;(message "ucfirst: %s" (match-string 1))
+	  ;;(sit-for 1)
+	  (replace-match (upcase (match-string 1)) t nil)) 
+	(buffer-string)))
+
+(defun php-ucwords (str) 
+  (php-implode " " (mapcar 
+					(lambda (x) 
+					  (php-ucfirst x)) 
+					(php-explode " " str))))
 
 (provide 'php-str-funcs)

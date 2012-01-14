@@ -609,3 +609,9 @@
 (deftest "php-trim, no charlist" (assert-equal "ABCDEFG" (php-trim "\n\t   ABCDEFG   ")))
 
 (deftest "php-trim, charlist limit" (assert-equal "\t\tABCDEFG" (php-trim "    \t\tABCDEFG " " ")))
+
+(deftest "php-ucfirst, test 1" (assert-equal "Hello world"(php-ucfirst "hello world")))
+(deftest "php-ucfirst, test 2" (assert-equal "HELLO world"(php-ucfirst "HELLO world")))
+
+(deftest "php-ucwords, test 1" (assert-equal "Hello World"(php-ucwords "hello world")))
+

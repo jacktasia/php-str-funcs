@@ -37,11 +37,11 @@ tests.el uses [elk-test](http://nschum.de/src/emacs/elk-test/).
 * strtolower
 * strtoupper
 * trim
+* ucfirst
+* ucwords
 
 ### Next Up
 
-* ucfirst
-* ucwords
 * preg_replace
 * preg_replace_all
 * md5_file
